@@ -3,7 +3,7 @@
 <suite name="Full Smoke Suite" verbose="1">
     <test name="Positive login test">
         <classes>
-            <class name="com.practicetestautomation.tests.login.PositiveLoginTests"/>
+            <class name="com.practicetestautomation.tests.login.LoginTests"/>
         </classes>
     </test>
 </suite>
