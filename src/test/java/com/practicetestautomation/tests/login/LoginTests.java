@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTests {
@@ -45,47 +46,18 @@ public class LoginTests {
         driver.quit();
     }
 
+    @Parameters({"username", "password", "expectedErrorMessage"})
     @Test(groups = {"negative", "regression"})
-    public void incorrectUserNameTest() {
-        WebDriver driver = new ChromeDriver();
-        //Open page
-        openPage(driver, "https://practicetestautomation.com/practice-test-login/");
-
-        //Type username incorrectUser into Username field
-        sendKeys(findWebElementByXPath(driver, "//input[@name='username']"), "incorrectUser");
-
-        //Type password Password123 into Password field
-        sendKeys(findWebElementByXPath(driver, "//input[@name='password']"), "Password123");
-
-        //Push Submit button
-        clickElement(findWebElementByXPath(driver, "//button[@id='submit']"));
-
-        //Verify error message is displayed
-        if (isWebElementDisplayed(findWebElementByXPath(driver, "//div[@id='error']"))){
-            try {
-                wait(2);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        Assert.assertTrue(isWebElementDisplayed(findWebElementByXPath(driver, "//div[@id='error']")));
-
-        //Verify error message text is Your username is invalid!
-        Assert.assertEquals(getTextFromElement(findWebElementByXPath(driver, "//div[@id='error']")), "Your username is invalid!");
-
-        quitDriver(driver);
-    }
-    @Test(groups = {"negative", "regression"})
-    public void incorrectPasswordTest(){
+    public void negativeLoginTest(String username, String password, String expectedErrorMessage){
         WebDriver driver = new ChromeDriver();
         //Open page
         openPage(driver, "https://practicetestautomation.com/practice-test-login/");
 
         //Type username student into Username field
-        sendKeys(findWebElementByXPath(driver, "//input[@name='username']"), "student");
+        sendKeys(findWebElementByXPath(driver, "//input[@name='username']"), username);
 
         //Type password incorrectPassword into Password field
-        sendKeys(findWebElementByXPath(driver, "//input[@name='password']"), "incorrectPassword");
+        sendKeys(findWebElementByXPath(driver, "//input[@name='password']"), password);
 
         //Push Submit button
         clickElement(findWebElementByXPath(driver, "//button[@id='submit']"));
@@ -93,7 +65,7 @@ public class LoginTests {
         //Verify error message is displayed
         if (isWebElementDisplayed(findWebElementByXPath(driver, "//div[@id='error']"))){
             try {
-                wait(2);
+                wait(3);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -101,7 +73,7 @@ public class LoginTests {
         Assert.assertTrue(isWebElementDisplayed(findWebElementByXPath(driver, "//div[@id='error']")));
 
         //Verify error message text is Your password is invalid!
-        Assert.assertEquals(getTextFromElement(findWebElementByXPath(driver, "//div[@id='error']")),"Your password is invalid!");
+        Assert.assertEquals(getTextFromElement(findWebElementByXPath(driver, "//div[@id='error']")),expectedErrorMessage);
 
         quitDriver(driver);
 

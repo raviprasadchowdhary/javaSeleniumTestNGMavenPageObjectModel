@@ -10,14 +10,31 @@
             </class>
         </classes>
     </test>
-    <test name="Negative login Test">
-        <groups>
-            <run>
-                <exclude name="positive"/>
-            </run>
-        </groups>
+
+    <test name="Incorrect Username Test">
+        <parameter name="username" value="incorrectUsername"/>
+        <parameter name="password" value="Password123"/>
+        <parameter name="expectedErrorMessage" value="Your username is invalid!"/>
         <classes>
-            <class name="com.practicetestautomation.tests.login.LoginTests"/>
+            <class name="com.practicetestautomation.tests.login.LoginTests">
+                <methods>
+                    <include name="negativeLoginTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
+
+    <test name="Incorrect Password Test">
+        <parameter name="username" value="student"/>
+        <parameter name="password" value="incorrectPassword"/>
+        <parameter name="expectedErrorMessage" value="Your password is invalid!"/>
+        <classes>
+            <class name="com.practicetestautomation.tests.login.LoginTests">
+                <methods>
+                    <include name="negativeLoginTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
 </suite>
