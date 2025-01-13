@@ -4,19 +4,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class LoginTests {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp(){
+    @Parameters("browser")
+    public void setUp(@Optional("Chrome") String browser){
         //Open page
-        driver = new ChromeDriver();
+        switch (browser.toLowerCase()){
+            case "edge":
+                driver = new EdgeDriver();
+                System.out.println("Test is executing in edge browser");
+                break;
+            case "firefox":
+                driver = new FirefoxDriver();
+                System.out.println("Test is executing in firefox browser");
+                break;
+            default:
+                driver = new ChromeDriver();
+                System.out.println("Test is executing in chrome browser");
+                break;
+        }
         driver.get("https://practicetestautomation.com/practice-test-login/");
     }
 
