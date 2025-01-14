@@ -41,8 +41,8 @@ public class LoginTests {
                 break;
             default:
                 driver = new ChromeDriver();
-                System.out.println("Test is executing in chrome browser as requested browser is not a supported browser or there is a typo");
-                logger.warning("Test is executing in chrome browser as requested browser is not a supported browser or there is a typo");
+                System.out.println("Test is executing in chrome browser as requested browser: " + browser + " configurations are missing");
+                logger.warning("Test is executing in chrome browser as requested browser: " + browser + " configurations are missing");
                 break;
         }
         driver.get("https://practicetestautomation.com/practice-test-login/");
