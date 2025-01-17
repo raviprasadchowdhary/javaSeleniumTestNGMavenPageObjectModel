@@ -22,7 +22,7 @@ public class LoginTests {
     @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
     public void setUp(@Optional("Chrome") String browser){
-        logger =Logger.getLogger(LoginTests.class.getName());
+        logger = Logger.getLogger(LoginTests.class.getName());
         logger.setLevel(Level.INFO);
         logger.info("Running Tests in " + browser);
         //Open page

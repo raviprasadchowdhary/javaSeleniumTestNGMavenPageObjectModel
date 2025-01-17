@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Full Regression Suite" verbose="1">
+
     <test name="Positive login Test In Chrome">
         <parameter name="browser" value="chrome"/>
         <classes>
