@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.v130.css.model.Value;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -101,7 +102,7 @@ public class ExceptionTests {
         row2InputField.sendKeys("pizza");
 
         //Push Save button using locator By.name(“Save”)
-        driver.findElement(By.name("Save")).click();
+        driver.findElement(By.xpath("//div[@id='row2']/button[@id='save_btn']")).click();
 
         //Verify text saved
         WebElement saveConfirmationElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmation")));
@@ -110,6 +111,35 @@ public class ExceptionTests {
         Assert.assertEquals(saveConfirmationElement.getText(),"Row 2 was saved");
 
     }
+    @Test
+    public void invalidElementStateExceptionTest() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement row1InputField = driver.findElement(By.xpath("//div[@id='row1']/input"));
+        WebElement editButtonLocator = driver.findElement(By.xpath("//button[@id='edit_btn']"));
+        WebElement saveButtonLocator = driver.findElement(By.xpath("//button[@id='save_btn']"));
+
+        String row1InputFieldTextBefore = row1InputField.getAttribute("value");
+        System.out.println("row1InputFieldTextBefore: " + row1InputFieldTextBefore);
+
+        //clcik edit
+        editButtonLocator.click();
+
+        //Clear input field
+        row1InputField.clear();
+
+        //Type text into the input field
+        row1InputField.sendKeys("Choco");
+
+        //click save
+        saveButtonLocator.click();
+
+        String row1InputFieldTextAfter = row1InputField.getAttribute("value");
+        System.out.println("row1InputFieldTextAfter: " + row1InputFieldTextAfter);
+
+        Assert.assertNotEquals(row1InputFieldTextBefore, row1InputFieldTextAfter);
+    }
+
 
     /*
     *************************************************************************************
