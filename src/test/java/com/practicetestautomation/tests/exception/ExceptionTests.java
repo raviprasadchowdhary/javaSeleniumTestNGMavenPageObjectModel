@@ -140,6 +140,29 @@ public class ExceptionTests {
         Assert.assertNotEquals(row1InputFieldTextBefore, row1InputFieldTextAfter);
     }
 
+    @Test
+    public void staleElementReferenceExceptionTest() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        //Open page
+        //Find the instructions text element
+        //Push add button
+        //Verify instruction text element is no longer displayed
+
+        WebElement instructionTextLocator = driver.findElement(By.id("instructions"));
+        WebElement addButtonLocator = driver.findElement(By.id("add_btn"));
+
+        System.out.println("instructionTextLocator.isDisplayed(): " + instructionTextLocator.isDisplayed());
+        Assert.assertTrue(instructionTextLocator.isDisplayed());
+
+        addButtonLocator.click();
+
+        System.out.println("instructionTextLocator.isDisplayed(): " + instructionTextLocator.isDisplayed());
+//        Assert.assertTrue(instructionTextLocator.isDisplayed());
+
+
+    }
+
 
     /*
     *************************************************************************************

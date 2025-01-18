@@ -7,7 +7,7 @@
         <classes>
             <class name="com.practicetestautomation.tests.exception.ExceptionTests">
                 <methods>
-                    <include name="invalidElementStateExceptionTest"/>
+                    <include name="staleElementReferenceExceptionTest"/>
                 </methods>
             </class>
         </classes>
