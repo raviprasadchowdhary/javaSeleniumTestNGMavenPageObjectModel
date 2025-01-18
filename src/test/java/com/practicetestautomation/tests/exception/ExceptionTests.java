@@ -152,14 +152,11 @@ public class ExceptionTests {
         WebElement instructionTextLocator = driver.findElement(By.id("instructions"));
         WebElement addButtonLocator = driver.findElement(By.id("add_btn"));
 
-        System.out.println("instructionTextLocator.isDisplayed(): " + instructionTextLocator.isDisplayed());
         Assert.assertTrue(instructionTextLocator.isDisplayed());
 
         addButtonLocator.click();
 
-        System.out.println("instructionTextLocator.isDisplayed(): " + instructionTextLocator.isDisplayed());
-//        Assert.assertTrue(instructionTextLocator.isDisplayed());
-
+        Assert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(instructionTextLocator)));
 
     }
 
