@@ -21,14 +21,7 @@ public class SuccessfulLoginPage {
     //locators
     private By logOutButtonLocator = By.linkText("Log out");
 
-    public String getCurrentUrl(){
-        return driver.getCurrentUrl();
-    }
-
-    public String getPageSource(){
-        return driver.getPageSource();
-    }
-
+    //methods
     public boolean isLogOutButtonDisplayed(){
         try {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(logOutButtonLocator)).isDisplayed();

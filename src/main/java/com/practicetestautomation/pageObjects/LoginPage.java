@@ -23,6 +23,7 @@ public class LoginPage {
     private By submitButtonLocator = By.id("submit");
     private By errorMessageLocator = By.id("error");
 
+    //methods
     public void enterUsername(String username){
         driver.findElement(usernameInputLocator).sendKeys(username);
     }
