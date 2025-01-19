@@ -2,7 +2,6 @@ package com.practicetestautomation.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ExceptionsPage extends BasePage{
 
@@ -70,6 +69,14 @@ public class ExceptionsPage extends BasePage{
 
     public String getRow2InputFieldText(){
         return getAttributeValue(row2InputFieldLocator, "value");
+    }
+
+    public boolean isInstructionsElementDisplayed(){
+        return isElementDisplayed(instructionsLocator);
+    }
+
+    public boolean isInstructionsElementNotDisplayed(){
+        return isElementNotDisplayed(instructionsLocator);
     }
 
 }

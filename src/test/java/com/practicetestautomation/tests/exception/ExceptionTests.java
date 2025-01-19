@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class ExceptionTests {
     private WebDriver driver;
     private Logger logger;
+    private ExceptionsPage exceptionsPage;
 
     @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
@@ -65,7 +66,7 @@ public class ExceptionTests {
     public void noSuchElementExceptionTest() {
 
         //execution
-        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage = new ExceptionsPage(driver);
         exceptionsPage.visit();
         exceptionsPage.clickAddButton();
 
@@ -77,7 +78,7 @@ public class ExceptionTests {
     public void timeoutExceptionTest() {
 
         //execution
-        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage = new ExceptionsPage(driver);
         exceptionsPage.visit();
         exceptionsPage.clickAddButton();
 
@@ -89,7 +90,7 @@ public class ExceptionTests {
     public void elementNotInteractableExceptionTest() {
 
         //execution
-        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage = new ExceptionsPage(driver);
         exceptionsPage.visit();
         exceptionsPage.addRow2SaveInput("Sushi");
 
@@ -101,7 +102,7 @@ public class ExceptionTests {
     public void invalidElementStateExceptionTest() {
 
         //execution
-        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage = new ExceptionsPage(driver);
         exceptionsPage.visit();
         String row1InputFieldTextBefore = exceptionsPage.getRow1InputFieldText();
         exceptionsPage.editRow1InputFieldAndSave("Choco");
@@ -114,21 +115,17 @@ public class ExceptionTests {
 
     @Test
     public void staleElementReferenceExceptionTest() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        //Open page
-        //Find the instructions text element
-        //Push add button
-        //Verify instruction text element is no longer displayed
+        //execution
+        exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage.visit();
+        //asserts
+        Assert.assertTrue(exceptionsPage.isInstructionsElementDisplayed());
 
-        WebElement instructionTextLocator = driver.findElement(By.id("instructions"));
-        WebElement addButtonLocator = driver.findElement(By.id("add_btn"));
-
-        Assert.assertTrue(instructionTextLocator.isDisplayed());
-
-        addButtonLocator.click();
-
-        Assert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(instructionTextLocator)));
+        //execution
+        exceptionsPage.clickAddButton();
+        //asserts
+        Assert.assertTrue(exceptionsPage.isInstructionsElementNotDisplayed());
 
     }
 }

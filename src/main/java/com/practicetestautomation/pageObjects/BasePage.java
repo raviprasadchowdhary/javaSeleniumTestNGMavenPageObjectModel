@@ -49,6 +49,10 @@ public class BasePage {
         }
     }
 
+    protected boolean isElementNotDisplayed(By locator){
+        return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
     protected void clickElement(By locator){
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
     }
