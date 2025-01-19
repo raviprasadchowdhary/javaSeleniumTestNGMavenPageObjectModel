@@ -18,7 +18,6 @@ public class LoginPage extends BasePage{
     private By errorMessageLocator = By.id("error");
 
     //methods
-
     public void visit(){
         super.visit("https://practicetestautomation.com/practice-test-login/");
     }
@@ -40,6 +39,10 @@ public class LoginPage extends BasePage{
         enterPassword(password);
         clickSubmitButton();
         return new SuccessfulLoginPage(driver);
+    }
+
+    public boolean isErrorDisplayed(){
+        return isElementDisplayed(errorMessageLocator);
     }
 
     public String getErrorMessageText(){
