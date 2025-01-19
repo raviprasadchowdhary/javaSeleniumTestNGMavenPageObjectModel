@@ -6,16 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class SuccessfulLoginPage {
+public class SuccessfulLoginPage extends BasePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
     //Constructor
     public SuccessfulLoginPage(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
     }
 
     //locators
