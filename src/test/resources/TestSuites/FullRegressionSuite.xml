@@ -63,4 +63,59 @@
         </classes>
     </test>
 
+    <test name="noSuchElementException Resolved">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.practicetestautomation.tests.exception.ExceptionTests">
+                <methods>
+                    <include name="noSuchElementExceptionTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="timeoutException Resolved">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.practicetestautomation.tests.exception.ExceptionTests">
+                <methods>
+                    <include name="timeoutExceptionTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="elementNotInteractableException Resolved">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.practicetestautomation.tests.exception.ExceptionTests">
+                <methods>
+                    <include name="elementNotInteractableExceptionTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="invalidElementStateException Resolved">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.practicetestautomation.tests.exception.ExceptionTests">
+                <methods>
+                    <include name="invalidElementStateExceptionTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="staleElementReferenceException Resolved">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.practicetestautomation.tests.exception.ExceptionTests">
+                <methods>
+                    <include name="staleElementReferenceExceptionTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
 </suite>
