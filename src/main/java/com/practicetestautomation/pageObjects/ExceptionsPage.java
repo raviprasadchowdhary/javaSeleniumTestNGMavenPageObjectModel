@@ -57,4 +57,19 @@ public class ExceptionsPage extends BasePage{
         return getTextFromElementLocator(confirmationLocator);
     }
 
+    public void editRow1InputFieldAndSave(String input){
+        clickElement(editButtonLocator);
+        clearKeysFromInputField(row1InputFieldLocator);
+        sendKeysIntoInputField(row1InputFieldLocator, input);
+        clickElement(saveButtonLocator);
+    }
+
+    public String getRow1InputFieldText(){
+        return getAttributeValue(row1InputFieldLocator,"value");
+    }
+
+    public String getRow2InputFieldText(){
+        return getAttributeValue(row2InputFieldLocator, "value");
+    }
+
 }

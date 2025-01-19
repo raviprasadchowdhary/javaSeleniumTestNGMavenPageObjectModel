@@ -60,4 +60,12 @@ public class BasePage {
     protected String getTextFromElementLocator(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
     }
+
+    protected String getAttributeValue(By locator, String attribute){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute(attribute);
+    }
+
+    protected void clearKeysFromInputField(By locator){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
+    }
 }

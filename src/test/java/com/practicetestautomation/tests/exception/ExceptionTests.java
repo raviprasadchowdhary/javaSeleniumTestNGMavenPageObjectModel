@@ -99,31 +99,17 @@ public class ExceptionTests {
     }
     @Test
     public void invalidElementStateExceptionTest() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement row1InputField = driver.findElement(By.xpath("//div[@id='row1']/input"));
-        WebElement editButtonLocator = driver.findElement(By.xpath("//button[@id='edit_btn']"));
-        WebElement saveButtonLocator = driver.findElement(By.xpath("//button[@id='save_btn']"));
+        //execution
+        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage.visit();
+        String row1InputFieldTextBefore = exceptionsPage.getRow1InputFieldText();
+        exceptionsPage.editRow1InputFieldAndSave("Choco");
+        String row1InputFieldTextAfter = exceptionsPage.getRow1InputFieldText();
 
-        String row1InputFieldTextBefore = row1InputField.getAttribute("value");
-        System.out.println("row1InputFieldTextBefore: " + row1InputFieldTextBefore);
-
-        //clcik edit
-        editButtonLocator.click();
-
-        //Clear input field
-        row1InputField.clear();
-
-        //Type text into the input field
-        row1InputField.sendKeys("Choco");
-
-        //click save
-        saveButtonLocator.click();
-
-        String row1InputFieldTextAfter = row1InputField.getAttribute("value");
-        System.out.println("row1InputFieldTextAfter: " + row1InputFieldTextAfter);
-
+        //assertions
         Assert.assertNotEquals(row1InputFieldTextBefore, row1InputFieldTextAfter);
+
     }
 
     @Test
