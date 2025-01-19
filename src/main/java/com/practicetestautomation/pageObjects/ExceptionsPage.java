@@ -67,10 +67,6 @@ public class ExceptionsPage extends BasePage{
         return getAttributeValue(row1InputFieldLocator,"value");
     }
 
-    public String getRow2InputFieldText(){
-        return getAttributeValue(row2InputFieldLocator, "value");
-    }
-
     public boolean isInstructionsElementDisplayed(){
         return isElementDisplayed(instructionsLocator);
     }
