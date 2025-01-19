@@ -18,6 +18,11 @@ public class LoginPage extends BasePage{
     private By errorMessageLocator = By.id("error");
 
     //methods
+
+    public void visit(){
+        super.visit("https://practicetestautomation.com/practice-test-login/");
+    }
+
     public void enterUsername(String username){
         driver.findElement(usernameInputLocator).sendKeys(username);
     }

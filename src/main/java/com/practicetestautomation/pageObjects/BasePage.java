@@ -20,6 +20,11 @@ public class BasePage {
     }
 
     // methods
+
+    protected void visit(String Url){
+        driver.get(Url);
+    }
+
     public String getCurrentUrl(){
         return driver.getCurrentUrl();
     }

@@ -1,12 +1,14 @@
 package com.practicetestautomation.tests.login;
 
+import com.practicetestautomation.pageObjects.BasePage;
+import com.practicetestautomation.pageObjects.LoginPage;
+import com.practicetestautomation.pageObjects.SuccessfulLoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -25,6 +27,7 @@ public class LoginTests {
         logger = Logger.getLogger(LoginTests.class.getName());
         logger.setLevel(Level.INFO);
         logger.info("Running Tests in " + browser);
+
         //Open page
         switch (browser.toLowerCase()){
             case "chrome":
@@ -45,7 +48,6 @@ public class LoginTests {
                 logger.warning("Test is executing in chrome browser as requested browser: " + browser + " configurations are missing");
                 break;
         }
-        driver.get("https://practicetestautomation.com/practice-test-login/");
     }
 
     @AfterMethod(alwaysRun = true)
@@ -58,38 +60,18 @@ public class LoginTests {
     public void testLoginFunctionality(){
         logger.info("starting test execution of testLoginFunctionality");
 
-        //Type username student into Username field
-        WebElement usernameInput = driver.findElement(By.xpath("//input[@id='username']"));
-        usernameInput.sendKeys("student");
-        logger.info("Username is entered in the username field");
+        //execution
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        SuccessfulLoginPage successfulLoginPage = loginPage.executeLogin("student","Password123");
+        successfulLoginPage.load();
 
-        //Type password Password123 into Password field
-        WebElement passwordInput = driver.findElement(By.xpath("//input[@id='password']"));
-        passwordInput.sendKeys("Password123");
-        logger.info("Password is entered in the password field");
-
-        //Push Submit button
-        WebElement submitButton = driver.findElement(By.xpath("//button[@id='submit']"));
-        submitButton.click();
-        logger.info("Submit button is clicked");
-
-        //Verify new page URL contains practicetestautomation.com/logged-in-successfully/
-        String expectedCurrentPageUrl = "https://practicetestautomation.com/logged-in-successfully/";
-        String actualCurrentPageUrl = driver.getCurrentUrl();
-        Assert.assertEquals(actualCurrentPageUrl, expectedCurrentPageUrl);
+        //assertions
+        Assert.assertEquals(successfulLoginPage.getCurrentUrl(),"https://practicetestautomation.com/logged-in-successfully/");
         logger.info("Current page URL validation is done ");
-
-        //Verify new page contains expected text ('Congratulations' or 'successfully logged in')
-        String expectedloginSuccessMessage = "Congratulations student. You successfully logged in!";
-        String pageSource = driver.getPageSource();
-        if (pageSource != null) {
-            Assert.assertTrue(pageSource.contains(expectedloginSuccessMessage));
-        }
+        Assert.assertTrue(successfulLoginPage.getPageSource().contains("Congratulations student. You successfully logged in!"));
         logger.info("Verified whether the page contains expected text");
-
-        //Verify button Log out is displayed on the new page
-        WebElement logoutButton = driver.findElement(By.linkText("Log out"));
-        Assert.assertTrue(logoutButton.isDisplayed());
+        Assert.assertTrue(successfulLoginPage.isLogOutButtonDisplayed());
         logger.info("Verified if the logout button is displayed");
 
     }
