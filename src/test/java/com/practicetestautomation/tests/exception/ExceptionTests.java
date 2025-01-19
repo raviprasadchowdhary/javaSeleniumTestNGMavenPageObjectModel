@@ -113,11 +113,13 @@ public class ExceptionTests {
         //execution
         exceptionsPage = new ExceptionsPage(driver);
         exceptionsPage.visit();
+
         //asserts
         Assert.assertTrue(exceptionsPage.isInstructionsElementDisplayed());
 
         //execution
         exceptionsPage.clickAddButton();
+
         //asserts
         Assert.assertTrue(exceptionsPage.isInstructionsElementNotDisplayed());
 
