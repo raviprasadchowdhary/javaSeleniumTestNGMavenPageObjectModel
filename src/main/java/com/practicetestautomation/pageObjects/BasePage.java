@@ -19,7 +19,11 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // methods
+    /*
+    *************************************************************************************
+        Methods
+    *************************************************************************************
+    */
 
     protected void visit(String Url){
         driver.get(Url);

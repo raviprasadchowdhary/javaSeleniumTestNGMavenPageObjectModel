@@ -2,7 +2,6 @@ package com.practicetestautomation.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
 
@@ -11,13 +10,23 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    //Locators
+    /*
+    *************************************************************************************
+        Locators
+    *************************************************************************************
+    */
+
     private By usernameInputLocator = By.id("username");
     private By passwordInputLocator = By.id("password");
     private By submitButtonLocator = By.id("submit");
     private By errorMessageLocator = By.id("error");
 
-    //methods
+    /*
+    *************************************************************************************
+        Methods
+    *************************************************************************************
+    */
+
     public void visit(){
         super.visit("https://practicetestautomation.com/practice-test-login/");
     }
