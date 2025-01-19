@@ -6,14 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginTests {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(LoginTests.class);
     private WebDriver driver;
     private Logger logger;
 
@@ -80,7 +78,7 @@ public class LoginTests {
 
     @Parameters({"username", "password", "expectedErrorMessage"})
     @Test(groups = {"negative", "regression"})
-    public void negativeLoginTest(@Optional("student") String username, @Optional("Paassword123") String password, @Optional("Your password is invalid!") String expectedErrorMessage){
+    public void negativeLoginTest(@Optional("student") String username, @Optional("Password") String password, @Optional("Your password is invalid!") String expectedErrorMessage){
         logger.info("starting test execution of negativeLoginTest");
 
         //execution
