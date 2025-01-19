@@ -48,4 +48,16 @@ public class BasePage {
             return false;
         }
     }
+
+    protected void clickElement(By locator){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+    }
+
+    protected void sendKeysIntoInputField(By locator, String input){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(input);
+    }
+
+    protected String getTextFromElementLocator(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+    }
 }
