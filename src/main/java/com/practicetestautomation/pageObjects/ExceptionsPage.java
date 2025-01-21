@@ -31,7 +31,7 @@ public class ExceptionsPage extends BasePage{
     */
 
     public void visit(){
-        visit("https://practicetestautomation.com/practice-test-exceptions/");
+        super.visit("https://practicetestautomation.com/practice-test-exceptions/");
     }
 
     public void clickAddButton(){
